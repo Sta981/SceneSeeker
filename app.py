@@ -308,16 +308,20 @@ def render_player(movie_id, progress_seconds=0):
     if progress_seconds > 30:
         url += f"&progress={progress_seconds}"
     
-    # Added sandbox attributes to bypass deployment restrictions
+    # Attempt 2: Added ALL possible sandbox bypass flags for aggressive streaming embeds
     st.markdown(f"""
     <div style="margin:0.5rem 0; border-radius:12px; overflow:hidden;">
         <iframe src="{url}" width="100%" height="480"
             frameborder="0" allowfullscreen
-            sandbox="allow-scripts allow-same-origin allow-presentation allow-forms allow-popups"
+            sandbox="allow-scripts allow-same-origin allow-presentation allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
             allow="autoplay; fullscreen; encrypted-media; picture-in-picture">
         </iframe>
     </div>
     """, unsafe_allow_html=True)
+    
+    # The Fallback: A nice Streamlit button just in case the deployment platform blocks the iframe
+    st.write("") # Thori si spacing ke liye
+    st.link_button("🎥 Watch Movie in New Tab (If player doesn't load)", url, use_container_width=True)
 
 def render_mini_movie_cards(titles):
     for j, title in enumerate(titles[:4]):
