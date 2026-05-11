@@ -1,7 +1,6 @@
 similarity.pkl
-sceneseeker.db
-.streamlit/secrets.toml
-.venv/
-__pycache__/
 *.csv
-*.ipynb
+*.db
+__pycache__/
+.env
+.streamlit/secrets.toml
